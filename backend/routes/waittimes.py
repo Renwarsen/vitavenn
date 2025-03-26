@@ -6,4 +6,5 @@ router = APIRouter()
 @router.get("")
 def waittime_endpoint(
     treatment: str = Query(..., description="Behandling"),
-    location: str = Query(None, description="Sted (valgfritt
+    location: str = Query(None, description="Sted (valgfritt)")
+
