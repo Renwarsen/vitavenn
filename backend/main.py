@@ -1,0 +1,33 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+from fastapi import FastAPI, WebSocket
+from routes import waittimes
+from whisper_transcriber import transcribe_audio
+from gpt_assistant import ask_gpt
+from auth import get_current_user
+from logs import log_error
+
+import tempfile
+
+app = FastAPI()
+
+# Route registration
+app.include_router(waittimes.router, prefix="/api/waittimes")
+
+# WebSocket endpoint for real-time transcription
+@app.websocket("/ws/transcribe")
+async def websocket_transcribe(websocket: WebSocket):
+    await websocket.accept()
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
+        while True:
+            try:
+                data = await websocket.receive_bytes()
+                temp_audio.write(data)
+                temp_audio.flush()
+                text = transcribe_audio(temp_audio.name)
+                await websocket.send_text(text)
+            except Exception as ex:
+                log_error(str(ex), origin="WebSocket")
+                await websocket.send_text("[WebSocket-feil] " + str(ex))
