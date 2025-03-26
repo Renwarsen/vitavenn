@@ -9,6 +9,7 @@ from backend.gpt_assistant import ask_gpt
 from backend.auth import get_current_user
 from backend.logs import log_error
 import tempfile
+import os
 
 app = FastAPI()
 
@@ -17,7 +18,7 @@ app.include_router(waittimes.router, prefix="/api/waittimes")
 @app.websocket("/ws/transcribe")
 async def websocket_transcribe(websocket: WebSocket):
     await websocket.accept()
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
+    with tempfile.NamedTemporaryFile(delete=True, suffix=".wav") as temp_audio:  # Ensuring file is deleted after use
         while True:
             try:
                 data = await websocket.receive_bytes()
@@ -28,3 +29,4 @@ async def websocket_transcribe(websocket: WebSocket):
             except Exception as ex:
                 log_error(str(ex), origin="WebSocket")
                 await websocket.send_text("[WebSocket-feil] " + str(ex))
+                break  # Break out of loop after error to avoid endless retries
