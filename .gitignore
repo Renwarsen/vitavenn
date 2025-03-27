@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv
+ENV/
+env.bak/
+venv.bak/
+
+# Environment files
+.env
+
+# VSCode / IDE
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# PyInstaller, pipenv, poetry, pdm, coverage, mypy, pytest
+*.spec
+*.lock
+.tox/
+.coverage
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+*.log
+*.pot
+*.mo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Ruff
+.ruff_cache/

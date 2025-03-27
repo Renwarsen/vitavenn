@@ -9,7 +9,6 @@ from backend.gpt_assistant import ask_gpt
 from backend.auth import get_current_user
 from backend.logs import log_error
 import tempfile
-import os
 
 app = FastAPI()
 
