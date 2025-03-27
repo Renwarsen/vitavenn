@@ -4,6 +4,8 @@
   "description": "Stemmestyrt og strategisk AI-verktøy for helseledere i Norge. Denne versjonen er fullstendig klar for lokal utvikling og deploy via Render.",
   "main": "index.js",
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
