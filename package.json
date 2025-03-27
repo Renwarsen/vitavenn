@@ -1,0 +1,16 @@
+{
+  "name": "vitavenn_v11.6.1_complete",
+  "version": "1.0.0",
+  "description": "Stemmestyrt og strategisk AI-verktøy for helseledere i Norge. Denne versjonen er fullstendig klar for lokal utvikling og deploy via Render.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
